@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Per Imane 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: fadeIn 1.5s ease;
+      max-width: 350px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 26px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      margin: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .yes {
+      background: white;
+      color: #ff4f7a;
+      font-weight: bold;
+    }
+
+    .no {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      position: absolute;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 20px;
+      animation: float 2s ease forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-200px) scale(1.5); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="question">
+    <h1>Imane 💖</h1>
+    <p>Ho una sola domanda per te…</p>
+    <h1>Vuoi essere il mio Valentino?</h1>
+    <button class="yes" onclick="yes()">Sì 💕</button>
+    <button class="no" onmouseover="moveNo()">No 😅</button>
+  </div>
+
+  <div class="card hidden" id="answer">
+    <h1>Sapevo che avresti detto sì 😌💘</h1>
+    <p>Preparati… ti porto via ❤️</p>
+  </div>
+
+  <script>
+    function yes() {
+      document.getElementById("question").classList.add("hidden");
+      document.getElementById("answer").classList.remove("hidden");
+      for (let i = 0; i < 20; i++) {
+        createHeart();
+      }
+    }
+
+    function moveNo() {
+      const btn = document.querySelector(".no");
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.bottom = "0px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+  </script>
+
+</body>
+</html>
